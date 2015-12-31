@@ -19,6 +19,7 @@
   "homepage": "https://github.com/cmdaniels/shorten-url#readme",
   "dependencies": {
     "express": "^4.13.3",
+    "mongoose": "^4.3.4",
     "serve-favicon": "^2.3.0"
   }
 }
