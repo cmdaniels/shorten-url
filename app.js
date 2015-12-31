@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:shortCode', function(req, res) {
-  res.end();
+  res.redirect(database[req.params.shortCode].original_url);
 });
 
 app.get('/new/:url*', function(req, res) {
