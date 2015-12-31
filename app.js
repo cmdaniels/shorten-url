@@ -7,6 +7,9 @@ var path = require('path');
 var app = express();
 var port = process.env.PORT || 8080;
 
+// Local database
+var database = [];
+
 // Middleware
 app.use(favicon(__dirname + '/favicon.ico'));
 
@@ -20,7 +23,12 @@ app.get('/:shortCode', function(req, res) {
 });
 
 app.get('/new/:url*', function(req, res) {
-  res.json({});
+  var object = {
+    'original_url': req.params.url + req.params[0],
+    'short_url': 'https://aqueous-sierra-2642.herokuapp.com/' + database.length()
+  };
+  database.push(object);
+  res.json(object);
 });
 
 // Server initialization
