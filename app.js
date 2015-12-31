@@ -23,12 +23,19 @@ app.get('/:shortCode', function(req, res) {
 });
 
 app.get('/new/:url*', function(req, res) {
-  var object = {
-    'original_url': req.params.url + req.params[0],
-    'short_url': 'https://aqueous-sierra-2642.herokuapp.com/' + database.length
-  };
-  database.push(object);
-  res.json(object);
+  var url = req.params.url + req.params[0];
+  if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {
+    var object = {
+      'original_url': url,
+      'short_url': 'https://aqueous-sierra-2642.herokuapp.com/' + database.length
+    };
+    database.push(object);
+    res.json(object);
+  } else {
+    res.json({
+      'error': 'Invalid URL'
+    });
+  }
 });
 
 // Server initialization
